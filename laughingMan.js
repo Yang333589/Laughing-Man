@@ -5,14 +5,14 @@ document.addEventListener("DOMContentLoaded", () =>{
         alert("You clicked me!");
     });
 
-    let box = document.querySelector("%box");
+    let box = document.querySelector("#box");
     for (let i = 0; i< SQUARE_COUNT; i++){
         //make element but its not on the page
         let square = document.createElement(`img`);
         //set attributes/properites of that element
         square.src = "laughing_man.jpg";
         square.alt = "Catch the Laughing Man!";
-        square.class = "square";
+        square.className = "square";
         box.appendChild(square);
     }
 });
