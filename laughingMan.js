@@ -20,14 +20,25 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     //forEach runs a function
     Array.from(box.children).forEach((element)=>{
-        let dx = SPEED* Math.random()*2-1; //this gives a number from -1 to 0.99999
-        let dy = SPEED* Math.random()*2-1;
+        const parent = element.parentElement;
+        const maxX = parent.clientWidth - element.clientWidth;
+        const maxY = parent.clientHeight - element.clientHeight;
+
+        let dx = SPEED* (Math.random()*2-1); //this gives a number from -1 to 0.99999
+        let dy = SPEED* (Math.random()*2-1);
 
         let x = parseInt(element.style.left) || 225;
         let y = parseInt(element.style.top) || 175;
 
         //setInterval takes a function and a period of time
         setInterval(()=>{
+            if (x <= 0 || x >= maxX){
+                dx *= -1;
+            }
+            if (y <= 0 || y >= maxY){
+                dy *= -1;
+            }
+
             x += dx;
             y += dy;
 
@@ -36,3 +47,5 @@ document.addEventListener("DOMContentLoaded", () =>{
         }, TIMER_SPEED)
     });
 });
+
+
