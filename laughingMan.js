@@ -1,14 +1,14 @@
 const SQUARE_COUNT = 3;
-const TIMER_SPEED = 10;
+const TIMER_SPEED = 16.6;
 const SPEED = 5;
 
-document.addEventListener("DOMContentLoaded", () =>{
-    document.querySelector("#square").addEventListener("click", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("#square").addEventListener("click", () => {
         alert("You clicked me!");
     });
 
     let box = document.querySelector("#box");
-    for (let i = 0; i< SQUARE_COUNT; i++){
+    for (let i = 0; i < SQUARE_COUNT; i++) {
         //make element but its not on the page
         let square = document.createElement(`img`);
         //set attributes/properites of that element
@@ -19,24 +19,26 @@ document.addEventListener("DOMContentLoaded", () =>{
     }
 
     //forEach runs a function
-    Array.from(box.children).forEach((element)=>{
+    Array.from(box.children).forEach((element) => {
         const parent = element.parentElement;
         const maxX = parent.clientWidth - element.clientWidth;
         const maxY = parent.clientHeight - element.clientHeight;
 
-        let dx = SPEED* (Math.random()*2-1); //this gives a number from -1 to 0.99999
-        let dy = SPEED* (Math.random()*2-1);
+        let dx = SPEED * (Math.random() * 2 - 1); //this gives a number from -1 to 0.99999
+        let dy = SPEED * (Math.random() * 2 - 1);
 
         let x = parseInt(element.style.left) || 225;
         let y = parseInt(element.style.top) || 175;
 
         //setInterval takes a function and a period of time
-        setInterval(()=>{
-            if (x <= 0 || x >= maxX){
+        setInterval(() => {
+            if (x <= 0 || x >= maxX) {
                 dx *= -1;
+                element.style.borderColor = newColor();
             }
-            if (y <= 0 || y >= maxY){
+            if (y <= 0 || y >= maxY) {
                 dy *= -1;
+                element.style.borderColor = newColor();
             }
 
             x += dx;
@@ -48,4 +50,12 @@ document.addEventListener("DOMContentLoaded", () =>{
     });
 });
 
+function newColor() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random()*256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
 
+//mouse over any square changes the image (eventListener: mouseover action mouseout action, change src)
+//changes border color of each square when it hits the edge
