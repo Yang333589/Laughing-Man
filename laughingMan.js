@@ -1,4 +1,4 @@
-const SQUARE_COUNT = 3;
+const SQUARE_COUNT = 50;
 const TIMER_SPEED = 16.6;
 const SPEED = 5;
 
@@ -30,6 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
         let x = parseInt(element.style.left) || 225;
         let y = parseInt(element.style.top) || 175;
 
+        element.addEventListener("mouseover", () => {
+            element.src = "orochimaru.jpg";
+        });
+
+        element.addEventListener("mouseout", () => {
+            element.src = "laughing_man.jpg";
+        });
+
         //setInterval takes a function and a period of time
         setInterval(() => {
             if (x <= 0 || x >= maxX) {
@@ -53,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function newColor() {
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
-    let b = Math.floor(Math.random()*256);
+    let b = Math.floor(Math.random() * 256);
     return `rgb(${r}, ${g}, ${b})`;
 }
 
