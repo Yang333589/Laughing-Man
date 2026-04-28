@@ -6,6 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#square").addEventListener("click", () => {
         alert("You clicked me!");
     });
+    
+    let realSquare = document.querySelector("#square");
+    realSquare.addEventListener("mouseover", () => {
+        realSquare.style.backgroundColor = newColor();
+    });
 
     let box = document.querySelector("#box");
     for (let i = 0; i < SQUARE_COUNT; i++) {
